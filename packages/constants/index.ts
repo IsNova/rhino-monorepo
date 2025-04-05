@@ -24,3 +24,11 @@ export const MARKETS = {
   EN: "en",
   CA: "ca",
 } as const;
+
+// Route paths
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  PRODUCTS: "/products",
+  PRODUCT_DETAIL: "/product",
+} as const;

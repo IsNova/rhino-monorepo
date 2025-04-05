@@ -1,25 +1,59 @@
-import { BRANDS } from "@game-portal/constants";
-import type { BrandConfig, BrandId } from "@game-portal/types";
+import { BRANDS, MARKETS } from "@game-portal/constants";
+import { BrandConfig, BrandId, MarketId } from "@game-portal/types";
 
 // Brand-specific configurations
 export const brandConfigs: Record<BrandId, BrandConfig> = {
   [BRANDS.PROJECT_A]: {
-    name: "Project A",
+    name: "Green Project",
     primaryColor: "#4CAF50", // Green
     secondaryColor: "#8BC34A",
     logoUrl: "/logos/project-a-logo.svg",
     menuPosition: "top",
     buttonText: "Green Button",
-    alertMessage: "Hello from Project A",
+    alertMessage: "Hello from Green Project",
+    markets: {
+      [MARKETS.EN]: {
+        name: "English",
+        locale: "en-US",
+        currency: "USD",
+        welcomeMessage:
+          "Welcome to Green Project - Your gaming destination in the US!",
+        featuredProducts: ["1", "2", "3"],
+      },
+      [MARKETS.CA]: {
+        name: "Canada",
+        locale: "en-CA",
+        currency: "CAD",
+        welcomeMessage:
+          "Welcome to Green Project - Your gaming destination in Canada!",
+        featuredProducts: ["2", "3", "4"],
+      },
+    },
   },
   [BRANDS.PROJECT_B]: {
-    name: "Project B",
+    name: "Red Project",
     primaryColor: "#F44336", // Red
     secondaryColor: "#E91E63",
     logoUrl: "/logos/project-b-logo.svg",
     menuPosition: "left",
     buttonText: "Red Button",
-    alertMessage: "Hello from Project B",
+    alertMessage: "Hello from Red Project",
+    markets: {
+      [MARKETS.EN]: {
+        name: "English",
+        locale: "en-US",
+        currency: "USD",
+        welcomeMessage: "Welcome to Red Project - Premium gaming in the US!",
+        featuredProducts: ["1", "4", "5"],
+      },
+      [MARKETS.CA]: {
+        name: "Canada",
+        locale: "en-CA",
+        currency: "CAD",
+        welcomeMessage: "Welcome to Red Project - Premium gaming in Canada!",
+        featuredProducts: ["3", "5", "6"],
+      },
+    },
   },
 };
 
@@ -31,6 +65,19 @@ export const getBrandConfig = (brandId: BrandId): BrandConfig => {
     return brandConfigs[BRANDS.PROJECT_A];
   }
   return brandConfigs[brandId];
+};
+
+// Helper function to get market config
+export const getMarketConfig = (brandId: BrandId, marketId: MarketId) => {
+  const brandConfig = getBrandConfig(brandId);
+
+  // If the marketId is invalid or the config doesn't exist, return EN config as default
+  if (!marketId || !brandConfig.markets[marketId]) {
+    console.warn(`Invalid marketId: ${marketId}, using default market`);
+    return brandConfig.markets[MARKETS.EN];
+  }
+
+  return brandConfig.markets[marketId];
 };
 
 // Brand themes based on brand configs

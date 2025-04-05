@@ -32,6 +32,16 @@ export interface BrandConfig {
   menuPosition: "top" | "left" | "right";
   buttonText: string;
   alertMessage: string;
+  markets: Record<MarketId, MarketConfig>;
+}
+
+// Market configuration interface
+export interface MarketConfig {
+  name: string;
+  locale: string;
+  currency: string;
+  welcomeMessage: string;
+  featuredProducts: string[];
 }
 
 // Brand theme interface
