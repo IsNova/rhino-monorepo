@@ -1,0 +1,17 @@
+{
+  "name": "types",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "constants": "*"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "typescript": "^5.2.2"
+  }
+}

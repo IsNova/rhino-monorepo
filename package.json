@@ -1,24 +1,24 @@
 {
-  "name": "with-tailwind",
+  "name": "game-portal-monorepo",
+  "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/app/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "turbo": "^2.5.0"
+    "eslint": "^8.48.0",
+    "prettier": "^3.0.3",
+    "turbo": "latest"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.0.0"
   },
-  "packageManager": "npm@11.1.0",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+  "packageManager": "npm@9.8.1"
 }
