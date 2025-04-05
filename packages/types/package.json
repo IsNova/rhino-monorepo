@@ -1,5 +1,5 @@
 {
-  "name": "types",
+  "name": "@game-portal/types",
   "version": "0.0.0",
   "main": "./index.ts",
   "types": "./index.ts",
@@ -8,7 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "constants": "*"
+    "@game-portal/constants": "*"
   },
   "devDependencies": {
     "eslint": "^8.48.0",

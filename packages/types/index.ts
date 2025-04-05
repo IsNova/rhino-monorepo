@@ -1,5 +1,4 @@
-// Import types from constants but don't re-export
-import type { BRANDS, PRODUCT_CATEGORIES } from "constants";
+import type { BRANDS, PRODUCT_CATEGORIES } from "@game-portal/constants";
 
 // Brand type
 export type BrandId = (typeof BRANDS)[keyof typeof BRANDS];

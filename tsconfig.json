@@ -16,8 +16,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "constants": ["packages/constants"],
-      "types": ["packages/types"]
+      "@game-portal/constants": ["packages/constants"],
+      "@game-portal/types": ["packages/types"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
