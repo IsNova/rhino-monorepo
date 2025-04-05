@@ -1,11 +1,10 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "../shared/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../shared/**/*.{js,ts,jsx,tsx,mdx}", // Include shared components
   ],
   theme: {
     extend: {
@@ -17,4 +16,3 @@ const config: Config = {
   },
   plugins: [],
 };
-export default config;
