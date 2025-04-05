@@ -40,9 +40,9 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
   const getMenuPositionClasses = () => {
     switch (brandConfig.menuPosition) {
       case "left":
-        return "flex-col items-start";
+        return "flex-col items-start min-h-screen";
       case "right":
-        return "flex-col items-end";
+        return "flex-col items-end min-h-screen";
       case "top":
       default:
         return "flex-row items-center justify-between";
@@ -57,13 +57,8 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
       className={`w-full p-4 flex ${getMenuPositionClasses()}`}
       style={{ backgroundColor: brandConfig.secondaryColor }}
     >
-      {/* <div className="flex items-center gap-4">
-        <div className="text-white font-bold text-xl">{brandConfig.name}</div>
-        <MarketSwitcher />
-      </div> */}
-
       <nav
-        className={`flex ${brandConfig.menuPosition === "top" ? "space-x-4" : "mt-4 space-y-2"}`}
+        className={`flex ${getMenuPositionClasses()}  ${brandConfig.menuPosition === "top" ? "space-x-4" : "mt-4 space-y-2"}`}
       >
         <Link href={basePath} className="text-white hover:underline">
           Home

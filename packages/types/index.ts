@@ -58,3 +58,12 @@ export interface BrandTheme {
   };
   borderRadius: string;
 }
+
+// User interface
+export interface User {
+  id: string;
+  username: string;
+  password: string; // In a real app, this would be hashed
+  name: string;
+  email: string;
+}
