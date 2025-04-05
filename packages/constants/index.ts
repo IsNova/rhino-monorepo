@@ -18,3 +18,9 @@ export const TEXT = {
   WELCOME_MESSAGE: "Welcome to our Game Portal",
   FOOTER_COPYRIGHT: "© 2025 Game Portal. All rights reserved.",
 } as const;
+
+// Market identifiers
+export const MARKETS = {
+  EN: "en",
+  CA: "ca",
+} as const;

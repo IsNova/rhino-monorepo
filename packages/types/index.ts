@@ -1,7 +1,14 @@
-import type { BRANDS, PRODUCT_CATEGORIES } from "@game-portal/constants";
+import type {
+  BRANDS,
+  MARKETS,
+  PRODUCT_CATEGORIES,
+} from "@game-portal/constants";
 
 // Brand type
 export type BrandId = (typeof BRANDS)[keyof typeof BRANDS];
+
+// Market type
+export type MarketId = (typeof MARKETS)[keyof typeof MARKETS];
 
 // Game category type
 export type GameCategory =
