@@ -1,6 +1,5 @@
 import { MARKETS } from "@game-portal/constants";
 import { MarketId } from "@game-portal/types";
-import Image from "next/image";
 
 export default function Home({ params }: { params: { market: string } }) {
   // Validate market parameter
@@ -14,8 +13,8 @@ export default function Home({ params }: { params: { market: string } }) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
-      This is Project A Home Page
-      <h1>Welcome to Project A</h1>
+      This is Project B Home Page
+      <h1>Welcome to Project B</h1>
     </div>
   );
 }
