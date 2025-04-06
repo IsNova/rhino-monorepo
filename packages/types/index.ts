@@ -68,23 +68,51 @@ export interface User {
   email: string;
 }
 
-// Product interface
+// Updated Product interface to match dummyjson.com API
 export interface Product {
-  id: string;
-  name: string;
+  id: number;
+  title: string;
   description: string;
   price: number;
-  imageUrl: string;
-  category: string;
+  discountPercentage: number;
+  rating: number;
   stock: number;
-  extendedInfo?: {
-    manufacturer: string;
-    releaseDate: string;
-    specifications: Record<string, string>;
-    reviews: Array<{
-      user: string;
-      rating: number;
-      comment: string;
-    }>;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+  tags?: string[];
+  sku?: string;
+  weight?: number;
+  dimensions?: {
+    width: number;
+    height: number;
+    depth: number;
   };
+  warrantyInformation?: string;
+  shippingInformation?: string;
+  availabilityStatus?: string;
+  reviews?: Array<{
+    rating: number;
+    comment: string;
+    date: string;
+    reviewerName: string;
+    reviewerEmail: string;
+  }>;
+  returnPolicy?: string;
+  minimumOrderQuantity?: number;
+  meta?: {
+    createdAt: string;
+    updatedAt: string;
+    barcode: string;
+    qrCode: string;
+  };
+}
+
+// API response types
+export interface ProductsResponse {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
 }

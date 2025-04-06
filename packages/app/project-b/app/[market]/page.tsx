@@ -1,18 +1,29 @@
 import { BRANDS, MARKETS } from "@game-portal/constants";
-import { MarketId } from "@game-portal/types";
-import { getMarketConfig } from "packages/app/shared/brand-config";
-import { Button, ProductCard } from "packages/app/shared/components";
+import { Button } from "../../../shared/components";
+import { getMarketConfig } from "../../../shared/brand-config";
 import { getFeaturedProducts } from "../../../shared/helpers";
+import { ProductCard } from "../../../shared/components";
+import type { MarketId } from "@game-portal/types";
+import { notFound } from "next/navigation";
 
-export default function Home({ params }: { params: { market: string } }) {
+// Use ISG with revalidation every hour
+export const revalidate = 300;
+
+export default async function MarketHomePage({
+  params,
+}: {
+  params: { market: string };
+}) {
   // Validate market parameter
   const market = params.market as MarketId;
-  console.log("🚀 ~ Home ~ market:", market);
   if (market !== MARKETS.EN && market !== MARKETS.CA) {
+    notFound();
   }
 
-  const marketConfig = getMarketConfig(BRANDS.PROJECT_A, market);
-  const featuredProducts = getFeaturedProducts(marketConfig.featuredProducts);
+  const marketConfig = getMarketConfig(BRANDS.PROJECT_B, market);
+  const featuredProducts = await getFeaturedProducts(
+    marketConfig.featuredProducts
+  );
 
   return (
     <div className="space-y-8">
@@ -20,9 +31,11 @@ export default function Home({ params }: { params: { market: string } }) {
         <h1 className="text-4xl font-bold mb-4" style={{ color: "#F44336" }}>
           {marketConfig.welcomeMessage}
         </h1>
-        <p className="text-xl mb-6">Discover premium games tailored for you</p>
+        <p className="text-xl mb-6">
+          Discover premium products tailored for you
+        </p>
         <Button brandId={BRANDS.PROJECT_B} className="text-lg">
-          Explore Games
+          Explore Products
         </Button>
       </section>
 
