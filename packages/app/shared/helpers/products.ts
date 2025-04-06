@@ -3,9 +3,8 @@ import type { Product, ProductsResponse } from "@game-portal/types";
 // Fetch all products from dummyjson.com API
 export async function getAllProducts(): Promise<Product[]> {
   try {
-    const response = await fetch("https://dummyjson.com/products?limit=20", {
-      next: { revalidate: 300 },
-    });
+    console.log(`[${new Date().toISOString()}] Fetching products from API`);
+    const response = await fetch("https://dummyjson.com/products?limit=20");
     if (!response.ok) {
       throw new Error(`Failed to fetch products: ${response.status}`);
     }
@@ -63,11 +62,9 @@ export async function getFeaturedProducts(
   ids: (string | number)[]
 ): Promise<Product[]> {
   try {
-    // Fetch products in parallel
     const productPromises = ids.map((id) => getProductById(id));
     const products = await Promise.all(productPromises);
 
-    // Filter out null products
     return products.filter((product): product is Product => product !== null);
   } catch (error) {
     console.error("Error fetching featured products:", error);
@@ -90,4 +87,27 @@ export async function searchProducts(query: string): Promise<Product[]> {
     console.error(`Error searching products for "${query}":`, error);
     return [];
   }
+}
+
+export function shuffleTopN<T>(array: T[], n: number): T[] {
+  if (!array || array.length === 0 || n <= 0) return array;
+
+  const result = [...array];
+  const topN = Math.min(n, result.length);
+
+  for (let i = 0; i < topN - 1; i++) {
+    const j = i + Math.floor(Math.random() * (topN - i));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  console.log(
+    `[${new Date().toISOString()}] Shuffled the top ${topN} products for SEO freshness`
+  );
+  return result;
+}
+
+export async function getSEOFriendlyProducts(): Promise<Product[]> {
+  const products = await getAllProducts();
+
+  return shuffleTopN(products, 10);
 }

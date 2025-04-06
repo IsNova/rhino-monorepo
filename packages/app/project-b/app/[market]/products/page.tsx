@@ -1,6 +1,6 @@
 import { BRANDS } from "@game-portal/constants";
 import { ProductCard } from "../../../../shared/components";
-import { getAllProducts } from "../../../../shared/helpers";
+import { getSEOFriendlyProducts } from "../../../../shared/helpers";
 import type { MarketId } from "@game-portal/types";
 
 // Use ISG with revalidation every hour
@@ -12,7 +12,15 @@ export default async function ProductsPage({
   params: { market: string };
 }) {
   const market = params.market as MarketId;
-  const products = await getAllProducts();
+
+  const products = await getSEOFriendlyProducts();
+
+  console.log(
+    `[${new Date().toISOString()}] Generated ProjectB products page for market: ${market}`
+  );
+  console.log(
+    `[${new Date().toISOString()}] Total products: ${products.length}`
+  );
 
   return (
     <div className="py-8">
