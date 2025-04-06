@@ -14,7 +14,6 @@ export default async function MarketHomePage({
 }: {
   params: { market: string };
 }) {
-  // Validate market parameter
   const market = params.market as MarketId;
   if (market !== MARKETS.EN && market !== MARKETS.CA) {
     notFound();

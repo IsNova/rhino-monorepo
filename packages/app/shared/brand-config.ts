@@ -1,7 +1,6 @@
 import { BRANDS, MARKETS } from "@game-portal/constants";
 import { BrandConfig, BrandId, MarketId } from "@game-portal/types";
 
-// Brand-specific configurations
 export const brandConfigs: Record<BrandId, BrandConfig> = {
   [BRANDS.PROJECT_A]: {
     name: "Green Project",
@@ -57,9 +56,7 @@ export const brandConfigs: Record<BrandId, BrandConfig> = {
   },
 };
 
-// Helper function to get brand config with fallback
 export const getBrandConfig = (brandId: BrandId): BrandConfig => {
-  // If the brandId is invalid or the config doesn't exist, return PROJECT_A config as default
   if (!brandId || !brandConfigs[brandId]) {
     console.warn(`Invalid brandId: ${brandId}, using default config`);
     return brandConfigs[BRANDS.PROJECT_A];
@@ -67,11 +64,9 @@ export const getBrandConfig = (brandId: BrandId): BrandConfig => {
   return brandConfigs[brandId];
 };
 
-// Helper function to get market config
 export const getMarketConfig = (brandId: BrandId, marketId: MarketId) => {
   const brandConfig = getBrandConfig(brandId);
 
-  // If the marketId is invalid or the config doesn't exist, return EN config as default
   if (!marketId || !brandConfig.markets[marketId]) {
     console.warn(`Invalid marketId: ${marketId}, using default market`);
     return brandConfig.markets[MARKETS.EN];
@@ -80,7 +75,6 @@ export const getMarketConfig = (brandId: BrandId, marketId: MarketId) => {
   return brandConfig.markets[marketId];
 };
 
-// Brand themes based on brand configs
 export const getBrandTheme = (brandId: BrandId) => {
   const config = getBrandConfig(brandId);
 

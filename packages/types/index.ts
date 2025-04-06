@@ -63,7 +63,7 @@ export interface BrandTheme {
 export interface User {
   id: string;
   username: string;
-  password: string; // In a real app, this would be hashed
+  password: string;
   name: string;
   email: string;
 }

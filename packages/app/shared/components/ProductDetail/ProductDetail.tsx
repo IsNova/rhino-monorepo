@@ -46,14 +46,12 @@ function ProductDetailContent({
   const [selectedImage, setSelectedImage] = useState(product.thumbnail);
   const brandConfig = getBrandConfig(brandId);
 
-  // Determine border radius based on brand
   const borderRadius = brandId === "project-a" ? "4px" : "8px";
 
   return (
     <div className="py-8">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Product Images */}
           <div className="lg:w-1/2">
             <div className="mb-4">
               <img
@@ -92,7 +90,6 @@ function ProductDetailContent({
             )}
           </div>
 
-          {/* Product Details */}
           <div className="lg:w-1/2">
             <h1
               className="text-3xl font-bold mb-2"

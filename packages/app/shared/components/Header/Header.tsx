@@ -5,7 +5,6 @@ import { BRANDS, MARKETS, ROUTES } from "@game-portal/constants";
 import { getBrandConfig, getMarketConfig } from "../../brand-config";
 import { Button } from "../Button/Button";
 import { MarketSwitcher } from "..";
-// import { MarketSwitcher } from "../MarketSwitcher/MarketSwitcher";
 
 interface HeaderProps {
   brandId: BrandId;
@@ -13,7 +12,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
-  // Make sure brandId and marketId are valid, default if not
   const validBrandId =
     brandId && (brandId === BRANDS.PROJECT_A || brandId === BRANDS.PROJECT_B)
       ? brandId
@@ -27,7 +25,6 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
   const brandConfig = getBrandConfig(validBrandId);
   const marketConfig = getMarketConfig(validBrandId, validMarketId);
 
-  // Ensure we have a valid config
   if (!brandConfig) {
     console.error(`Invalid brand configuration for brandId: ${validBrandId}`);
     return (
@@ -37,7 +34,6 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
     );
   }
 
-  // Determine menu position based on brand config
   const getMenuPositionClasses = () => {
     switch (brandConfig.menuPosition) {
       case "left":
@@ -50,7 +46,6 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
     }
   };
 
-  // Base path for the current market
   const basePath = `/${validMarketId}`;
 
   return (

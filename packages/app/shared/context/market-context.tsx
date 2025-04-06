@@ -30,7 +30,6 @@ export function MarketProvider({
   const router = useRouter();
   const pathname = usePathname();
 
-  // Extract market from pathname when component mounts or pathname changes
   useEffect(() => {
     const pathSegments = pathname.split("/");
     if (pathSegments.length > 1) {
@@ -41,15 +40,12 @@ export function MarketProvider({
     }
   }, [pathname]);
 
-  // Function to switch market and navigate to the corresponding URL
   const switchMarket = (market: MarketId) => {
     setCurrentMarket(market);
 
-    // Get the path after the market segment
     const pathSegments = pathname.split("/");
     pathSegments[1] = market;
 
-    // Navigate to the same path but with different market
     router.push(pathSegments.join("/"));
   };
 

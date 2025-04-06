@@ -19,7 +19,6 @@ export default async function ProductDetailPage({
   const market = params.market as MarketId;
   const id = params.id;
 
-  // Fetch product data server-side
   const product = await getProductById(id);
 
   if (!product) {
@@ -29,13 +28,11 @@ export default async function ProductDetailPage({
   const brandConfig = getBrandConfig(BRANDS.PROJECT_A);
   const marketConfig = getMarketConfig(BRANDS.PROJECT_A, market);
 
-  // Format price according to market locale and currency
   const formattedPrice = new Intl.NumberFormat(marketConfig.locale, {
     style: "currency",
     currency: marketConfig.currency,
   }).format(product.price);
 
-  // Calculate discounted price if available
   const discountedPrice = product.discountPercentage
     ? product.price * (1 - product.discountPercentage / 100)
     : null;

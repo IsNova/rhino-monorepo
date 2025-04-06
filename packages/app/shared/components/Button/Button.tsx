@@ -18,7 +18,6 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
 }) => {
-  // Make sure brandId is valid, default to PROJECT_A if not
   const validBrandId =
     brandId && (brandId === BRANDS.PROJECT_A || brandId === BRANDS.PROJECT_B)
       ? brandId
@@ -26,7 +25,6 @@ export const Button: React.FC<ButtonProps> = ({
 
   const brandConfig = getBrandConfig(validBrandId);
 
-  // Ensure we have a valid config
   if (!brandConfig) {
     console.error(`Invalid brand configuration for brandId: ${validBrandId}`);
     return (
@@ -38,12 +36,10 @@ export const Button: React.FC<ButtonProps> = ({
     );
   }
 
-  // Default onClick handler based on brand
   const handleClick = () => {
     if (onClick) {
       onClick();
     } else {
-      // Default behavior shows brand-specific alert
       alert(brandConfig.alertMessage);
     }
   };

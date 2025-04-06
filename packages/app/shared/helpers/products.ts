@@ -1,6 +1,5 @@
 import type { Product, ProductsResponse } from "@game-portal/types";
 
-// Fetch all products from dummyjson.com API
 export async function getAllProducts(): Promise<Product[]> {
   try {
     console.log(`[${new Date().toISOString()}] Fetching products from API`);
@@ -16,7 +15,6 @@ export async function getAllProducts(): Promise<Product[]> {
   }
 }
 
-// Fetch a single product by ID from dummyjson.com API
 export async function getProductById(
   id: string | number
 ): Promise<Product | null> {
@@ -36,7 +34,6 @@ export async function getProductById(
   }
 }
 
-// Fetch products by category
 export async function getProductsByCategory(
   category: string
 ): Promise<Product[]> {
@@ -57,7 +54,6 @@ export async function getProductsByCategory(
   }
 }
 
-// Fetch featured products by IDs
 export async function getFeaturedProducts(
   ids: (string | number)[]
 ): Promise<Product[]> {
@@ -72,7 +68,6 @@ export async function getFeaturedProducts(
   }
 }
 
-// Search products
 export async function searchProducts(query: string): Promise<Product[]> {
   try {
     const response = await fetch(

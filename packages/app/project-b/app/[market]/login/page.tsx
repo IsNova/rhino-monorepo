@@ -8,10 +8,8 @@ import React from "react";
 const Page = ({ params }: { params: { market: string } }) => {
   const market = params.market as MarketId;
 
-  // Server action for authentication
   async function handleLogin(username: string, password: string) {
     "use server";
-    // In a real app, you would use a more secure authentication method
     return authenticateUser(username, password);
   }
   return (

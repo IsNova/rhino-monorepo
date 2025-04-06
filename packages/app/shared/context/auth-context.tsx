@@ -21,7 +21,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
-  // Check for stored user on client-side
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {

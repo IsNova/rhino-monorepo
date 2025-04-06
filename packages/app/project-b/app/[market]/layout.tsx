@@ -12,7 +12,6 @@ export default function MarketLayout({
   children: React.ReactNode;
   params: { market: string };
 }) {
-  // Validate market parameter
   const market = params.market as MarketId;
   if (market !== MARKETS.EN && market !== MARKETS.CA) {
     notFound();
