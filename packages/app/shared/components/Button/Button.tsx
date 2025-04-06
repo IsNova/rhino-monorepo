@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`px-4 py-3 rounded font-medium text-white transition-colors hover:opacity-90 ${className}`}
+      className={`px-4 py-2 rounded font-medium text-white transition-colors hover:opacity-90 ${className}`}
       style={{
         backgroundColor: brandConfig.primaryColor,
         borderRadius: validBrandId === BRANDS.PROJECT_A ? "4px" : "8px",

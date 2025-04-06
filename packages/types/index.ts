@@ -67,3 +67,24 @@ export interface User {
   name: string;
   email: string;
 }
+
+// Product interface
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  stock: number;
+  extendedInfo?: {
+    manufacturer: string;
+    releaseDate: string;
+    specifications: Record<string, string>;
+    reviews: Array<{
+      user: string;
+      rating: number;
+      comment: string;
+    }>;
+  };
+}

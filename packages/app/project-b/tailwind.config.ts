@@ -4,7 +4,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../shared/**/*.{js,ts,jsx,tsx,mdx}", // Include shared components
+    "../shared/**/*.{js,ts,jsx,tsx,mdx}", // Include shared components
   ],
   theme: {
     extend: {
