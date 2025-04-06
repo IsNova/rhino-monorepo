@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { getBrandConfig } from "../../../../../shared/brand-config";
-import type { BrandId, MarketId, Product } from "@game-portal/types";
-import {
-  AuthProvider,
-  useAuth,
-} from "packages/app/shared/context/auth-context";
+import type React from "react";
 
-interface ProductDetailClientProps {
+import { useState } from "react";
+import { getBrandConfig } from "../../brand-config";
+import type { BrandId, MarketId, Product } from "@game-portal/types";
+import { useAuth } from "../../context/auth-context";
+import { AuthProvider } from "../../context/auth-context";
+interface ProductDetailProps {
   product: Product;
   brandId: BrandId;
   marketId: MarketId;
@@ -16,13 +15,13 @@ interface ProductDetailClientProps {
   formattedDiscountedPrice: string | null;
 }
 
-export default function ProductDetailClient({
+export const ProductDetail: React.FC<ProductDetailProps> = ({
   product,
   brandId,
   marketId,
   formattedPrice,
   formattedDiscountedPrice,
-}: ProductDetailClientProps) {
+}) => {
   return (
     <AuthProvider>
       <ProductDetailContent
@@ -34,7 +33,7 @@ export default function ProductDetailClient({
       />
     </AuthProvider>
   );
-}
+};
 
 function ProductDetailContent({
   product,
@@ -42,10 +41,13 @@ function ProductDetailContent({
   marketId,
   formattedPrice,
   formattedDiscountedPrice,
-}: ProductDetailClientProps) {
+}: ProductDetailProps) {
   const { isAuthenticated } = useAuth();
   const [selectedImage, setSelectedImage] = useState(product.thumbnail);
   const brandConfig = getBrandConfig(brandId);
+
+  // Determine border radius based on brand
+  const borderRadius = brandId === "project-a" ? "4px" : "8px";
 
   return (
     <div className="py-8">
@@ -58,7 +60,10 @@ function ProductDetailContent({
                 src={selectedImage || product.thumbnail}
                 alt={product.title}
                 className="w-full h-auto rounded-lg object-cover"
-                style={{ maxHeight: "400px", borderRadius: "8px" }}
+                style={{
+                  maxHeight: "400px",
+                  borderRadius,
+                }}
               />
             </div>
             {product.images && product.images.length > 0 && (
@@ -68,7 +73,7 @@ function ProductDetailContent({
                     key={index}
                     src={image || "/placeholder.svg"}
                     alt={`${product.title} - Image ${index + 1}`}
-                    className={`w-full h-20 object-cover rounded-lg cursor-pointer border-2 ${
+                    className={`w-full h-20 object-cover cursor-pointer border-2 ${
                       selectedImage === image
                         ? "border-primary"
                         : "border-transparent"
@@ -78,7 +83,7 @@ function ProductDetailContent({
                         selectedImage === image
                           ? brandConfig.primaryColor
                           : "transparent",
-                      borderRadius: "8px",
+                      borderRadius,
                     }}
                     onClick={() => setSelectedImage(image)}
                   />
@@ -124,7 +129,10 @@ function ProductDetailContent({
                     <p className="text-lg text-gray-500 line-through ml-3">
                       {formattedPrice}
                     </p>
-                    <span className="ml-3 bg-red-100 text-red-800 text-sm font-semibold px-2 py-1 rounded-lg">
+                    <span
+                      className="ml-3 bg-red-100 text-red-800 text-sm font-semibold px-2 py-1 rounded"
+                      style={{ borderRadius }}
+                    >
                       {Math.round(product.discountPercentage)}% OFF
                     </span>
                   </>
@@ -186,17 +194,21 @@ function ProductDetailContent({
 
             <div className="flex gap-4">
               <button
-                className="px-6 py-2 text-white rounded-lg flex-1"
-                style={{ backgroundColor: brandConfig.primaryColor }}
+                className="px-6 py-2 text-white rounded flex-1"
+                style={{
+                  backgroundColor: brandConfig.primaryColor,
+                  borderRadius,
+                }}
                 disabled={product.stock <= 0}
               >
                 Add to Cart
               </button>
               <button
-                className="px-4 py-2 border rounded-lg"
+                className="px-4 py-2 border rounded"
                 style={{
                   borderColor: brandConfig.primaryColor,
                   color: brandConfig.primaryColor,
+                  borderRadius,
                 }}
               >
                 <svg
@@ -323,15 +335,18 @@ function ProductDetailContent({
                 ) : !isAuthenticated ? (
                   <div
                     className="bg-gray-50 p-6 rounded-lg text-center"
-                    style={{ borderRadius: "8px" }}
+                    style={{ borderRadius }}
                   >
                     <p className="mb-4">
                       Log in to see customer reviews and detailed product
                       information.
                     </p>
                     <button
-                      className="px-4 py-2 text-white rounded-lg"
-                      style={{ backgroundColor: brandConfig.primaryColor }}
+                      className="px-4 py-2 text-white rounded"
+                      style={{
+                        backgroundColor: brandConfig.primaryColor,
+                        borderRadius,
+                      }}
                     >
                       Login to See Reviews
                     </button>
