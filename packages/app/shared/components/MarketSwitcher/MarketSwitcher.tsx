@@ -14,15 +14,16 @@ export const MarketSwitcher: React.FC<MarketSwitcherProps> = ({
 }) => {
   const { currentMarket, switchMarket } = useMarket();
 
-  const handleMarketChange = (market: string) => {
-    switchMarket(market as MarketId);
+  const handleMarketChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    switchMarket(event.target.value as MarketId);
   };
 
   return (
     <select
       value={currentMarket}
-      onChange={(e) => handleMarketChange(e.target.value)}
-      className={className}
+      onChange={handleMarketChange}
+      className={`w-[120px] px-3 py-2 border border-gray-300 rounded-md ${className}`}
+      data-testid="market-switcher"
     >
       <option value={MARKETS.EN}>English</option>
       <option value={MARKETS.CA}>Canada</option>
