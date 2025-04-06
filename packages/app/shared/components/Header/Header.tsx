@@ -4,6 +4,7 @@ import type { BrandId, MarketId } from "@game-portal/types";
 import { BRANDS, MARKETS, ROUTES } from "@game-portal/constants";
 import { getBrandConfig, getMarketConfig } from "../../brand-config";
 import { Button } from "../Button/Button";
+import { MarketSwitcher } from "..";
 // import { MarketSwitcher } from "../MarketSwitcher/MarketSwitcher";
 
 interface HeaderProps {
@@ -57,6 +58,10 @@ export const Header: React.FC<HeaderProps> = ({ brandId, marketId }) => {
       className={`w-full p-4 flex ${getMenuPositionClasses()}`}
       style={{ backgroundColor: brandConfig.secondaryColor }}
     >
+      <div className="flex items-center gap-4">
+        <div className="text-white font-bold text-xl">{brandConfig.name}</div>
+        <MarketSwitcher />
+      </div>
       <nav
         className={`flex ${getMenuPositionClasses()}  ${brandConfig.menuPosition === "top" ? "space-x-4" : "mt-4 space-y-2"}`}
       >

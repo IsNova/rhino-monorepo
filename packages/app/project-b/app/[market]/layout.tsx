@@ -3,6 +3,7 @@ import { BRANDS, MARKETS } from "@game-portal/constants";
 import { Header } from "../../../shared/components";
 import type { MarketId } from "@game-portal/types";
 import { notFound } from "next/navigation";
+import { MarketProvider } from "packages/app/shared/context";
 
 export default function MarketLayout({
   children,
@@ -18,16 +19,18 @@ export default function MarketLayout({
   }
 
   return (
-    <div className="flex min-h-screen">
-      <div className="w-64">
-        <Header brandId={BRANDS.PROJECT_B} marketId={market} />
+    <MarketProvider initialMarket={market}>
+      <div className="flex min-h-screen">
+        <div className="w-64">
+          <Header brandId={BRANDS.PROJECT_B} marketId={market} />
+        </div>
+        <div className="flex-1">
+          <main className="p-4">{children}</main>
+          <footer className="bg-gray-100 p-4 text-center">
+            © 2025 Red Project. All rights reserved.
+          </footer>
+        </div>
       </div>
-      <div className="flex-1">
-        <main className="p-4">{children}</main>
-        <footer className="bg-gray-100 p-4 text-center">
-          © 2025 Red Project. All rights reserved.
-        </footer>
-      </div>
-    </div>
+    </MarketProvider>
   );
 }
